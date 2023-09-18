@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <LinearLayout
+        android:id="@+id/player_list"
+        android:layout_width="87dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="top"
+        android:background="@drawable/wood"/>
+    <RelativeLayout
+        android:id="@+id/ice_rink"
+        android:layout_width="370dp"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/player_list"
+        android:background="@drawable/rink">
+        <EditText
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/back"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="time" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginEnd="3dp"
+            android:layout_alignParentEnd="true"/>
+        <Button
+            android:id="@+id/back"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_alignParentStart="true"/>
+        <Button
+            android:id="@+id/timeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="322dp"
+        android:layout_height="331dp"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

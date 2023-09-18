@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/rounded_edges"
+    tools:context=".AddPlayer">
+
+    <TextView
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="25dp"
+        android:text="First name:" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="220dp"
+        android:layout_height="51dp"
+        android:layout_below="@id/enterNumber"
+        android:layout_alignBaseline="@id/position"
+        android:layout_alignStart="@id/enterNumber" />
+
+    <EditText
+        android:id="@+id/enterFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/firstName"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/firstName"
+        android:ems="10"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/enterNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/number"
+        android:layout_alignStart="@id/enterFirstName"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastName"
+        android:layout_alignStart="@id/firstName"
+        android:layout_marginBottom="40dp"
+        android:text="Number:" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="Save"
+        android:layout_toEndOf="@id/delete"
+        android:layout_alignBaseline="@id/delete"/>
+
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/number"
+        android:layout_alignStart="@id/firstName"
+        android:text="Position:" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@id/spinner"
+        android:text="Delete" />
+
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstName"
+        android:layout_alignStart="@id/firstName"
+        android:layout_marginBottom="25dp"
+        android:text="Last name:" />
+
+    <EditText
+        android:id="@+id/enterLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/lastName"
+        android:layout_alignBaseline="@id/lastName"
+        android:layout_alignStart="@id/enterFirstName"
+        android:ems="10"
+        android:inputType="text" />
+</RelativeLayout>
