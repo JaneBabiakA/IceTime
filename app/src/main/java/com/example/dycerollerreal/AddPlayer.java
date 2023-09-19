@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 
 //TODO: Work on back button
 public class AddPlayer extends Fragment {
@@ -35,7 +36,7 @@ public class AddPlayer extends Fragment {
     String position;
     int goals;
     int assists;
-
+    LocalTime time;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -55,6 +56,7 @@ public class AddPlayer extends Fragment {
             position = arguments.getString("Position");
             goals = arguments.getInt("Goals");
             assists = arguments.getInt("Assists");
+            time = (LocalTime) arguments.getSerializable("Time");
         }
     }
 
@@ -78,11 +80,17 @@ public class AddPlayer extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("Hola", String.valueOf(time));
+                LocalTime testTime = LocalTime.of(3, 4, 2);
+                Log.e("Hola", String.valueOf(testTime));
                 //get all info to write to internal memory
                 String firstName = firstNameText.getText().toString();
                 String lastName = lastNameText.getText().toString();
                 String number = numberText.getText().toString();
                 String position = spinner.getSelectedItem().toString();
+                if (time == null){
+                    time = LocalTime.of(0, 0, 0);
+                }
                 try {
                     //get player info
                     JSONObject player = new JSONObject();
@@ -93,6 +101,8 @@ public class AddPlayer extends Fragment {
                     player.put("Position", position);
                     player.put("Goals", goals);
                     player.put("Assists", assists);
+                    player.put("Time", time);
+                    Log.e("Hola", String.valueOf(time));
                     //callback to update activity
                     if (myListener != null){
                         myListener.addToActivity(player);

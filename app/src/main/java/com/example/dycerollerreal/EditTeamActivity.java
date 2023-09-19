@@ -149,6 +149,7 @@ public class EditTeamActivity extends AppCompatActivity implements AddPlayer.inf
                         bundle.putString("Position", player.getString("Position"));
                         bundle.putInt("Goals", player.getInt("Goals"));
                         bundle.putInt("Assists", player.getInt("Assists"));
+                        bundle.putSerializable("Time", (Serializable) player.get("Time"));
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }

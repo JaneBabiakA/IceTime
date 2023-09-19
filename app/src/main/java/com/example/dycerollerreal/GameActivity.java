@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public class GameActivity extends AppCompatActivity implements AddGoal.editStats
             }
         }
         for (int i = 0; i < playerArray.length(); i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.player_icons, bench, false);
+            View view = LayoutInflater.from(this).inflate(R.layout.player_icons, bench, false); //TODO: issue, can't drag players before time starts
             TextView textView = view.findViewById(R.id.player_text);
             try {
                 String name = ((JSONObject) playerArray.get(i)).getString("Last name");
@@ -74,7 +75,7 @@ public class GameActivity extends AppCompatActivity implements AddGoal.editStats
                 HashMap<String, Object> extraInfo = new HashMap<String, Object>();
                 extraInfo.put("Goals", 0);
                 extraInfo.put("Assists", 0);
-                extraInfo.put("Total time", LocalTime.of(0, 0, 0));
+                extraInfo.put("Total time", 0);
                 extraInfo.put("Time entered", 0);
                 gameStats.put(name, extraInfo);
                 bench.addView(textView);
@@ -122,7 +123,7 @@ public class GameActivity extends AppCompatActivity implements AddGoal.editStats
                     } else {
                         rink.removeView(dragee);
                         bench.addView(dragee);
-                        stats.put("Total time", ((LocalTime) stats.get("Total time")).plusSeconds((counter - (int) stats.get("Time entered"))/1000));
+                        stats.put("Total time", ((int) stats.get("Total time")) + ((counter - (int) stats.get("Time entered"))/1000));
                         dragee.setX(0);
                         dragee.setY(0);
                     }
@@ -151,11 +152,14 @@ public class GameActivity extends AppCompatActivity implements AddGoal.editStats
                         JSONArray player_list = new JSONArray(stringBuilder.toString());
                         for (int i = 0; i < player_list.length(); i++){
                             JSONObject player = (JSONObject) player_list.get(i);
+                            Log.e("Hola", String.valueOf(gameStats.get(player.get("Last name"))));
+                            Log.e("Hola", String.valueOf(gameStats.get("B-A").get("Total time")));
                             int goals = (int) player.get("Goals") + (int) gameStats.get(player.get("Last name")).get("Goals");
                             int assists = (int) player.get("Assists") + (int) gameStats.get(player.get("Last name")).get("Assists");
-                            //java.sql.Time time = new java.sql.Time((Long) gameStats.get(player.get("Last name")).get("Time")) + player.get("Time");
+                            LocalTime time = (LocalTime.parse((CharSequence) player.get("Time"))).plusSeconds((int) gameStats.get(player.get("Last name")).get("Total time"));
                             ((JSONObject) player_list.get(i)).put("Goals", goals);
                             ((JSONObject) player_list.get(i)).put("Assists", assists);
+                            ((JSONObject) player_list.get(i)).put("Time", time);
                         }
                         FileOutputStream fileOutputStream = openFileOutput("player_info.json", Context.MODE_PRIVATE);
                         fileOutputStream.write(player_list.toString().getBytes());
