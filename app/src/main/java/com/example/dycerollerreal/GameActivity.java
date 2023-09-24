@@ -194,7 +194,7 @@ public class GameActivity extends AppCompatActivity implements AddGoal.editStats
                         @Override
                         public void onTick(long l) {
                             counter += 1000;
-                            timeBox.setText(String.format(Locale.getDefault(), "%02d:%02d", counter / 30000, (counter / 1000) % 60));
+                            timeBox.setText(String.format(Locale.getDefault(), "%02d:%02d", counter / 60000, (counter / 1000) % 60));
                         }
                         @Override
                         public void onFinish() {
